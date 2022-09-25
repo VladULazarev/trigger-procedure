@@ -40,7 +40,7 @@ USING (address_id)
 JOIN city as c
 USING (city_id)
 JOIN country
-USING(country_id)
+USING(country_id);
 ```
 
 Create trigger
@@ -169,4 +169,30 @@ READ UNCOMMITTED
 READ COMMITTED
 REPEATABLE READ
 SERIALIZABLE
+```
+
+Case THEN ELSE END (Get country's geo size group)
+
+```bash
+SELECT name, continent, code, surface_area,
+
+    CASE WHEN surface_area > 2000000 THEN 'large'
+
+        WHEN surface_area > 350000 and surface_area < 2000000 THEN 'medium'
+
+        ELSE 'small' END
+
+        AS geosize_group
+
+FROM countries
+```
+
+Get the language by the region
+
+```bash
+SELECT name FROM lang WHERE code IN (
+
+    SELECT code FROM countries WHERE region = 'Middle East'
+  )
+ORDER BY name;
 ```
