@@ -1,4 +1,4 @@
-# Index, view, trigger, procedure, function, transaction
+# Index, view, trigger, procedure, function, transaction, subqueries
 
 Show index
 
