@@ -1,24 +1,24 @@
-# Index, view, trigger, procedure, function, transaction, subqueries, csv
+## Index, view, trigger, procedure, function, transaction, subqueries, csv
 
-Show index
+Show index:
 
 ```bash
 SHOW INDEX FROM table_name
 ```
 
-Explain index
+Explain index:
 
 ```bash
 EXPLAIN SELECT * FROM table_name WHERE price = 9990 and category = 'Category name';
 ```
 
-Add index
+Add index:
 
 ```bash
 ALTER TABLE products ADD INDEX price_category (price,category);
 ```
 
-Create View
+Create View:
 
 ```bash
 CREATE
@@ -43,7 +43,7 @@ JOIN country
 USING(country_id);
 ```
 
-Create trigger
+Create trigger:
 
 ```bash
 DELIMITER $$
@@ -59,7 +59,7 @@ FOR EACH ROW
 DELIMITER ;
 ```
 
-Create procedure
+Create procedure:
 
 ```bash
 DROP PROCEDURE IF EXISTS find_cities;
@@ -77,7 +77,7 @@ DELIMITER ;
 CALL find_cities('AFG');
 ```
 
-Create procedure
+Create procedure:
 
 ```bash
 DROP PROCEDURE IF EXISTS count_cities;
@@ -96,7 +96,7 @@ CALL count_cities('AFG', @amount);
 SELECT @amount;
 ```
 
-Create function
+Create function:
 
 ```bash
 
@@ -120,7 +120,7 @@ DELIMITER ;
 SELECT count_cities('AFG');
 ```
 
-Show existing procedures
+Show existing procedures:
 
 ```bash
 SELECT
@@ -131,7 +131,7 @@ WHERE ROUTINE_SCHEMA = 'database_name' AND
 ROUTINE_TYPE = 'PROCEDURE';
 ```
 
-Create transaction
+Create transaction:
 
 ```bash
 START TRANSACTION;
@@ -147,7 +147,7 @@ WHERE user_id = 2;
 COMMIT;
 ```
 
-Create transaction using FOR UPDATE
+Create transaction using FOR UPDATE:
 
 ```bash
 START TRANSACTION;
@@ -162,7 +162,7 @@ WHERE user_id = 1;
 COMMIT;
 ```
 
-Levels of isolation
+Levels of isolation:
 
 ```bash
 READ UNCOMMITTED
@@ -171,7 +171,7 @@ REPEATABLE READ
 SERIALIZABLE
 ```
 
-Case THEN ELSE END (Get country's geo size group)
+Case THEN ELSE END (Get country's geo size group):
 
 ```bash
 SELECT name, continent, code, surface_area,
@@ -187,7 +187,7 @@ SELECT name, continent, code, surface_area,
 FROM countries
 ```
 
-Get the language by the region
+Get the language by the region:
 
 ```bash
 SELECT name FROM lang WHERE code IN (
@@ -197,59 +197,58 @@ SELECT name FROM lang WHERE code IN (
 ORDER BY name;
 ```
 
-Upload data from 'csv' file to remote 'mysql' server
+##Upload data from 'csv' file to remote 'mysql' server
 
-Open the terminal and enter your remote server
+Open the terminal and enter your remote server:
 
 ```bash
 ssh root@5.123.456.789
 ```
 
-Enter your 'mysql' server
+Enter your 'mysql' server:
+
 ```bash
 mysql -u root -p
 ```
 
-Find the path to upload 'test.csv' file
+Find the path to upload 'test.csv' file:
 
 ```bash
 SHOW VARIABLES LIKE 'secure_file_priv';
 ```
 
 You will see something like this:
- +------------------+-----------------------+
- | Variable_name    | Value                 |
-  +------------------+-----------------------+
- | secure_file_priv | /var/lib/mysql-files/ |
- +------------------+-----------------------+
 
- Quit 'mysql' server
+ | secure_file_priv | /var/lib/mysql-files/ |
+
+ Quit 'mysql' server;
+
  ```bash
  Quit
  ```
 
-Switch the terminal to your local machine and move to the directory where the 'test.csv' is located
+Switch the terminal to your local machine and move to the directory where the 'test.csv' is located.
 
-Upload the 'test.csv' from your local directory to your remote server
+Upload the 'test.csv' from your local directory to your remote server:
 
  ```bash
 scp test.csv root@5.123.456.789:/var/lib/mysql-files/
  ```
 
-Enter your remote 'mysql' server again
+Enter your remote 'mysql' server again:
 
 ```bash
 ssh root@5.123.456.789
 mysql -u root -p
 ```
 
-Select DB
+Select DB:
 
  ```bash
 use db_name;
  ```
 
-Load 'data' into the DB table
+Load 'data' into the DB table:
 
 ```bash
 LOAD DATA INFILE "/var/lib/mysql-files/test.csv"
