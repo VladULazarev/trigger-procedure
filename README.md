@@ -197,7 +197,7 @@ SELECT name FROM lang WHERE code IN (
 ORDER BY name;
 ```
 
-##Upload data from 'csv' file to remote 'mysql' server
+## Upload data from 'csv' file to remote 'mysql' server
 
 Open the terminal and enter your remote server:
 
