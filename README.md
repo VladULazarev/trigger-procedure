@@ -1,4 +1,4 @@
-# Index, view, trigger, procedure, function, transaction, subqueries
+# Index, view, trigger, procedure, function, transaction, subqueries, csv
 
 Show index
 
@@ -195,4 +195,68 @@ SELECT name FROM lang WHERE code IN (
     SELECT code FROM countries WHERE region = 'Middle East'
   )
 ORDER BY name;
+```
+
+Upload data from 'csv' file to remote 'mysql' server
+
+Open the terminal and enter your remote server
+
+```bash
+ssh root@5.123.456.789
+```
+
+Enter your 'mysql' server
+```bash
+mysql -u root -p
+```
+
+Find the path to upload 'test.csv' file
+
+```bash
+SHOW VARIABLES LIKE 'secure_file_priv';
+```
+
+You will see something like this:
+ +------------------+-----------------------+
+ | Variable_name    | Value                 |
+  +------------------+-----------------------+
+ | secure_file_priv | /var/lib/mysql-files/ |
+ +------------------+-----------------------+
+
+ Quit 'mysql' server
+ ```bash
+ Quit
+ ```
+
+Switch the terminal to your local machine and move to the directory where the 'test.csv' is located
+
+Upload the 'test.csv' from your local directory to your remote server
+
+ ```bash
+scp test.csv root@5.123.456.789:/var/lib/mysql-files/
+ ```
+
+Enter your remote 'mysql' server again
+
+```bash
+ssh root@5.123.456.789
+mysql -u root -p
+```
+
+Select DB
+
+ ```bash
+use db_name;
+ ```
+
+Load 'data' into the DB table
+
+```bash
+LOAD DATA INFILE "/var/lib/mysql-files/test.csv"
+   INTO table table_name
+   COLUMNS TERMINATED BY ','
+   ENCLOSED BY '"'
+   LINES TERMINATED BY '\n'
+   IGNORE 1 LINES
+ (description, industry, level, size, line_code, value);
 ```
