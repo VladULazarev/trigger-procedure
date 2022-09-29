@@ -257,5 +257,6 @@ LOAD DATA INFILE "/var/lib/mysql-files/test.csv"
    ENCLOSED BY '"'
    LINES TERMINATED BY '\n'
    IGNORE 1 LINES
+  -- column names
  (description, industry, level, size, line_code, value);
 ```
