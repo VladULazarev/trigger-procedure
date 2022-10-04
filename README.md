@@ -260,3 +260,37 @@ LOAD DATA INFILE "/var/lib/mysql-files/test.csv"
   -- column names
  (description, industry, level, size, line_code, value);
 ```
+
+## Mysql and XML
+
+Dump the 'data' from the mysql table to the xml file on a remote server.
+
+Login to your remote server and:
+
+```bash
+mysql -u root -puser_password --xml -e 'SELECT * FROM db_name.table_name' > /var/lib/mysql-files/table_name.xml
+```
+
+Download the xml file from a remote server.
+
+Switch the terminal to your local machine and:
+
+```bash
+scp root@5.123.456.789:/var/lib/mysql-files/table_name.xml C:\mysql\data
+```
+
+Upload the xml file to a remote server.
+
+Switch the terminal to your local machine, move to the directory where the 'table_name.xml' is located and:
+
+```bash
+scp table_name.xml root@5.101.50.239:/var/lib/mysql-files/
+```
+
+Load 'data' into the DB table from the xml file.
+
+Login your remote 'mysql' server and:
+
+```bash
+LOAD XML INFILE "/var/lib/mysql-files/table_name.xml" INTO TABLE table_name;
+```
