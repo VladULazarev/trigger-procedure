@@ -1,4 +1,4 @@
-## Index, view, trigger, procedure, function, transaction, subqueries, csv
+## Index, view, trigger, procedure, function, transaction, subqueries, csv, xml
 
 Show index:
 
